@@ -1,13 +1,17 @@
 // Connection to MySQL Database.
 var mysql = require("mysql");
 
-var connection = mysql.createConnection({
-  host: "us-cdbr-iron-east-01.cleardb.net",
-  port: 3306,
-  user: "be4e80284f3803",
-  password: "8408b2bc",
-  database: "heroku_c44d8a3c82b908b"
-});
+if (process.env.JAWSDB_URL) {
+  var connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  var connection = mysql.createConnection({
+    host: "us-cdbr-iron-east-01.cleardb.net",
+    port: 3306,
+    user: "be4e80284f3803",
+    password: "8408b2bc",
+    database: "heroku_c44d8a3c82b908b"
+  });
+}
 
 // Making the connection and confirming it,
 connection.connect(function(err) {
